@@ -31,7 +31,6 @@ def index(request):
             return JsonResponse(data, safe=False)
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
-#     return render(request, 'removerML/index.html')
      return JsonResponse(data, safe=False)   
 
 def data(request):
