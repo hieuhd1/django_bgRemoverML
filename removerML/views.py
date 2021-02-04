@@ -8,9 +8,10 @@ extensions = ['.jpg', '.jpeg', '.png']
 # response_data['result'] = 'error'
 # response_data['message'] = 'Some error message'
 def index(request):
+     
+    if request.method == 'POST' and request.FILES['image']:
      data = [{'name': 'Peter', 'email': 'peter@example.org'},
             {'name': 'Julia', 'email': 'julia@example.org'}]
-    if request.method == 'POST' and request.FILES['image']:
         image = request.FILES['image']
         ext = os.path.splitext(image.name)[1]
         if ext.lower() in extensions:
