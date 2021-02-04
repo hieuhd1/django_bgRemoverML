@@ -32,7 +32,7 @@ def index(request):
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
 #     return render(request, 'removerML/index.html')
-          return JsonResponse(data, safe=False)   
+     return JsonResponse(data, safe=False)   
 
 def data(request):
     if request.method == 'POST' and request.POST['image']:
