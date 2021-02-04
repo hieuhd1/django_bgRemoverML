@@ -4,7 +4,9 @@ import os, datetime, base64
 from . import remover
 
 extensions = ['.jpg', '.jpeg', '.png']
-
+response_data = {}
+response_data['result'] = 'error'
+response_data['message'] = 'Some error message'
 def index(request):
     if request.method == 'POST' and request.FILES['image']:
         image = request.FILES['image']
@@ -20,7 +22,9 @@ def index(request):
 
             remover.process(input_path, output_path)
             image_path = uploaded_file_url.split(".")[0] + "_processed.png"
-            return render(request, 'removerML/index.html', {"image_path": image_path})
+#             return render(request, 'removerML/index.html', {"image_path": image_path})
+return HttpResponse(json.dumps(response_data), content_type="application/json")
+
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
     return render(request, 'removerML/index.html')
