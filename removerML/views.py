@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse
 from django.core.files.storage import FileSystemStorage
-from django.http import JsonResponse
+# from django.http import JsonResponse
+import json
+from django.http import HttpResponse
 
 import os
 import datetime
@@ -36,10 +38,10 @@ def index(request):
             remover.process(input_path, output_path)
             image_path = uploaded_file_url.split(".")[0] + "_processed.png"
 #             return render(request, 'removerML/index.html', {"image_path": image_path})
-            return JsonResponse(data, safe=False)
+            return HttpResponse(dump, content_type='application/json')
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
-    return JsonResponse(data, safe=False)   
+    return HttpResponse(dump, content_type='application/json')
 
 def data(request):
     if request.method == 'POST' and request.POST['image']:
