@@ -12,7 +12,7 @@ extensions = ['.jpg', '.jpeg', '.png']
 def index(request):
      
     if request.method == 'POST' and request.FILES['image']:
-     data = [{'name': 'Peter', 'email': 'peter@example.org'},
+        data = [{'name': 'Peter', 'email': 'peter@example.org'},
             {'name': 'Julia', 'email': 'julia@example.org'}]
         image = request.FILES['image']
         ext = os.path.splitext(image.name)[1]
