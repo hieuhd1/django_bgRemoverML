@@ -27,8 +27,7 @@ def index(request):
             data = [{'name': 'Peter', 'email': 'peter@example.org'},
             {'name': 'Julia', 'email': 'julia@example.org'}]
 #             return render(request, 'removerML/index.html', {"image_path": image_path})
-return JsonResponse(data, safe=False)
-
+            return JsonResponse(data, safe=False)
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
     return render(request, 'removerML/index.html')
