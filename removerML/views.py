@@ -35,7 +35,7 @@ def index(request):
             return JsonResponse(data, safe=False)
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
-     return JsonResponse(data, safe=False)   
+    return JsonResponse(data, safe=False)   
 
 def data(request):
     if request.method == 'POST' and request.POST['image']:
