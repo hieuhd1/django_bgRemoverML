@@ -10,8 +10,7 @@ extensions = ['.jpg', '.jpeg', '.png']
 def index(request):
      
     if request.method == 'POST' and request.FILES['image']:
-     data = [{'name': 'Peter', 'email': 'peter@example.org'},
-            {'name': 'Julia', 'email': 'julia@example.org'}]
+   
         image = request.FILES['image']
         ext = os.path.splitext(image.name)[1]
         if ext.lower() in extensions:
@@ -25,6 +24,8 @@ def index(request):
 
             remover.process(input_path, output_path)
             image_path = uploaded_file_url.split(".")[0] + "_processed.png"
+            data = [{'name': 'Peter', 'email': 'peter@example.org'},
+            {'name': 'Julia', 'email': 'julia@example.org'}]
 #             return render(request, 'removerML/index.html', {"image_path": image_path})
 return JsonResponse(data, safe=False)
 
