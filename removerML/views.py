@@ -11,9 +11,14 @@ extensions = ['.jpg', '.jpeg', '.png']
 # response_data = {}
 # response_data['result'] = 'error'
 # response_data['message'] = 'Some error message'
-
-data = [{'name': 'Peter', 'email': 'peter@example.org'},
-            {'name': 'Julia', 'email': 'julia@example.org'}]
+data = {
+        'name': 'Vitor',
+        'location': 'Finland',
+        'is_active': True,
+        'count': 28
+    }
+# data = [{'name': 'Peter', 'email': 'peter@example.org'},
+#             {'name': 'Julia', 'email': 'julia@example.org'}]
 def index(request):
     if request.method == 'POST' and request.FILES['image']:
         image = request.FILES['image']
