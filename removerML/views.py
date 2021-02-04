@@ -2,15 +2,19 @@ from django.shortcuts import render, HttpResponse
 from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
 
-import os, datetime, base64
+import os
+import datetime
+import base64
 from . import remover
 
 extensions = ['.jpg', '.jpeg', '.png']
 # response_data = {}
 # response_data['result'] = 'error'
 # response_data['message'] = 'Some error message'
+
+
 def index(request):
-     
+
     if request.method == 'POST' and request.FILES['image']:
         data = [{'name': 'Peter', 'email': 'peter@example.org'},
             {'name': 'Julia', 'email': 'julia@example.org'}]
@@ -23,7 +27,8 @@ def index(request):
             file_name = uploaded_file_url.split("/")[2]
 
             input_path = os.getcwd() + uploaded_file_url
-            output_path = os.getcwd() + "/uploads/" + file_name.split(".")[0] + "_processed.png"
+            output_path = os.getcwd() + "/uploads/" + \
+                                    file_name.split(".")[0] + "_processed.png"
 
             remover.process(input_path, output_path)
             image_path = uploaded_file_url.split(".")[0] + "_processed.png"
