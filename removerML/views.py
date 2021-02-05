@@ -22,9 +22,9 @@ data = {
 # data = [{'name': 'Peter', 'email': 'peter@example.org'},
 #             {'name': 'Julia', 'email': 'julia@example.org'}]
 def index(request):
+    dump = json.dumps(data)
     if request.method == 'POST' and request.FILES['image']:
         image = request.FILES['image']
-        dump = json.dumps(data)
         ext = os.path.splitext(image.name)[1]
         if ext.lower() in extensions:
             fs = FileSystemStorage()
