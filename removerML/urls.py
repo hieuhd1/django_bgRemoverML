@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path("", views.index, name="index"),
+    path("/api/removebg", views.index, name="index"),
     path("upload", views.data, name="data")
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
