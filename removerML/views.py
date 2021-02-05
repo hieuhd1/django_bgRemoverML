@@ -42,7 +42,7 @@ def index(request):
             return HttpResponse(json.loads(employeeJSON), content_type="application/json")
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
-    return HttpResponse(json.dumps(employee), content_type="application/json")
+    return HttpResponse(json.dumps(ResponseData(200,"abc")), content_type="application/json")
 
 def data(request):
     if request.method == 'POST' and request.POST['image']:
