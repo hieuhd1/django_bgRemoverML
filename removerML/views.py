@@ -36,10 +36,11 @@ def index(request):
             remover.process(input_path, output_path)
             image_path = uploaded_file_url.split(".")[0] + "_processed.png"
 #             return render(request, 'removerML/index.html', {"image_path": image_path})
-            return JsonResponse({'foo':'bar'})
+            return JsonResponse({'code':200,'imagepath':image_path,'success':True})
         else:
-            return HttpResponse("Only Allowed extensions are {}".format(extensions))
-    return JsonResponse({'foo':'bar'})
+            # return HttpResponse("Only Allowed extensions are {}".format(extensions))
+            return JsonResponse({'code':300,'imagepath':image_path,'success':False})
+    return JsonResponse({'code':200,'imagepath':'','success':True})
 
 def data(request):
     if request.method == 'POST' and request.POST['image']:
@@ -56,4 +57,5 @@ def data(request):
 
         remover.process(input_path, output_path)
         image_path = "/uploads/" + image_name.split(".")[0] + "_processed.png"
-        return HttpResponse(request.get_host() + image_path)
+        # return HttpResponse(request.get_host() + image_path)
+        return JsonResponse({'code':200,'imagepath':image_path,'success':True})
