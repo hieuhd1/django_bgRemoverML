@@ -10,8 +10,8 @@ import os
 import datetime
 import base64
 from . import remover
+from django.http import JsonResponse
 
-import models
 
 extensions = ['.jpg', '.jpeg', '.png']
 # response_data = {}
@@ -35,14 +35,11 @@ def index(request):
 
             remover.process(input_path, output_path)
             image_path = uploaded_file_url.split(".")[0] + "_processed.png"
-            employee = ResponseData(200,"abc")
-            employeeJSON = json.dumps(employee)
-
 #             return render(request, 'removerML/index.html', {"image_path": image_path})
-            return HttpResponse(json.loads(employeeJSON), content_type="application/json")
+            return JsonResponse({'foo':'bar'})
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
-    return HttpResponse(json.dumps(ResponseData(200,"abc")), content_type="application/json")
+    return JsonResponse({'foo':'bar'})
 
 def data(request):
     if request.method == 'POST' and request.POST['image']:
