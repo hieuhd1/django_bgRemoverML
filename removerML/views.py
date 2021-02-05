@@ -3,26 +3,23 @@ from django.core.files.storage import FileSystemStorage
 # from django.http import JsonResponse
 import json
 from django.http import HttpResponse
-
+import json
+import jsonpickle
+from json import JSONEncoder
 import os
 import datetime
 import base64
 from . import remover
 
+import models
+
 extensions = ['.jpg', '.jpeg', '.png']
 # response_data = {}
 # response_data['result'] = 'error'
 # response_data['message'] = 'Some error message'
-data = {
-        'name': 'Vitor',
-        'location': 'Finland',
-        'is_active': True,
-        'count': 28
-    }
 # data = [{'name': 'Peter', 'email': 'peter@example.org'},
 #             {'name': 'Julia', 'email': 'julia@example.org'}]
 def index(request):
-    dump = json.dumps(data)
     if request.method == 'POST' and request.FILES['image']:
         image = request.FILES['image']
         ext = os.path.splitext(image.name)[1]
@@ -38,8 +35,11 @@ def index(request):
 
             remover.process(input_path, output_path)
             image_path = uploaded_file_url.split(".")[0] + "_processed.png"
+            employee = ResponseData(200,"abc")
+            employeeJSON = json.dumps(employee)
+
 #             return render(request, 'removerML/index.html', {"image_path": image_path})
-            return JsonResponse({'foo':'bar1'})
+            return JsonResponse(json.loads(employeeJSON))
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
     return JsonResponse({'foo':'bar'})
