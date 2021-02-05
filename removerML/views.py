@@ -39,10 +39,10 @@ def index(request):
             employeeJSON = json.dumps(employee)
 
 #             return render(request, 'removerML/index.html', {"image_path": image_path})
-            return HttpResponse(json.loads(employeeJSON))
+            return HttpResponse(json.loads(employeeJSON), content_type="application/json")
         else:
             return HttpResponse("Only Allowed extensions are {}".format(extensions))
-    return HttpResponse({'foo':'bar'})
+    return HttpResponse(json.loads(employeeJSON), content_type="application/json")
 
 def data(request):
     if request.method == 'POST' and request.POST['image']:
